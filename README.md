@@ -7,10 +7,12 @@
 - yarn add graphql@14.1.1
 - yarn add pg typeorm bcryptjs
 - yarn add -D @types/bcryptjs
-
+- yarn add ts-node-dev --dev
+- yarn add class-validator
 ## Todo
 - [x] Create TypeGraphQL - (Playground, Resolver).
 - [x] Register Resolver + FieldResolver. 
+- [x] Validation TypeGraphQL
 
 ## Study
 0. graphql을 15.0.0버전 => 14.1.1로 낮추어서 사용.
@@ -75,7 +77,21 @@ class RegisterResolver {
   
 }
 ```
-
+5. ts-node-dev
+- 기존의 typescript 실행을 하는 방법인 아래를 대체함
+- 필요한 파일이 변경되면, 대상 노드 프로세스를 다시 시작하지만, 재시작간에 Typescript 컴파일 프로세스를 공유함.
+- 이것은 매번 ts-node 컴파일을 인스턴스화 할 필요가 없기 때문에 nodemon --exec ts-node 보다 재시작 속도를 크게 증가시킴.
+```
+"scripts" : {
+    //"dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "ts-node-dev --respawn src/index.ts"
+}
+```
+6. validation
+- class-validator라이브러리를 사용함
+- class에 @isEmail()과 같은 형태의 데코레이션을 설정한 후에 Resolver에서 validation을 확인을했으나, TypeGraphQL에서는 데코레이션 설정만 하면 됨.
+- 추가로 자세한 validation에러를 확인하기 위해서 ApolloServer에 설정하였으나, 이제는 해결 됨.
+- 이외에 validation decorator를 커스터마이징하여 사용가능함 isEmailAlreadyExist.ts에서와 같이
 
 ## Issue
 - [ ] Resolver Function Mutation and Query how to set response type.

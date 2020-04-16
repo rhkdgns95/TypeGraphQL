@@ -9,10 +9,16 @@
 - yarn add -D @types/bcryptjs
 - yarn add ts-node-dev --dev
 - yarn add class-validator
+- yarn add express-session connect-redis ioredis cors
+- yarn add -D @types/express-session @types/connect-redis @types/ioredis @types/cors
+
+
 ## Todo
 - [x] Create TypeGraphQL - (Playground, Resolver).
 - [x] Register Resolver + FieldResolver. 
-- [x] Validation TypeGraphQL
+- [x] Validation TypeGraphQL.
+- [x] Login TypeGraphQL Part 1.
+- [ ] Login TypeGraphQL Part 2.
 
 ## Study
 0. graphql을 15.0.0버전 => 14.1.1로 낮추어서 사용.
@@ -92,6 +98,14 @@ class RegisterResolver {
 - class에 @isEmail()과 같은 형태의 데코레이션을 설정한 후에 Resolver에서 validation을 확인을했으나, TypeGraphQL에서는 데코레이션 설정만 하면 됨.
 - 추가로 자세한 validation에러를 확인하기 위해서 ApolloServer에 설정하였으나, 이제는 해결 됨.
 - 이외에 validation decorator를 커스터마이징하여 사용가능함 isEmailAlreadyExist.ts에서와 같이
+7. Redis
+- 인증관리 (Session)
+
 
 ## Issue
 - [ ] Resolver Function Mutation and Query how to set response type.
+- [ ] Redis start not connect.....
+
+
+## Etc
+- [참고영상](https://www.youtube.com/watch?v=3Vi_ztI0BeA&list=PLN3n1USn4xlma1bBu3Tloe4NyYn9Ko8Gs&index=4)
